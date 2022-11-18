@@ -31,8 +31,7 @@
         rgba(2, 8, 20, 0.08) 0px 0.175rem 0.5em;
     transform: translateY(-3px) scale(1.1);
 }
-.img {
-    width: auto;
+#imgContainer {
     background-color: crimson;
 }
 

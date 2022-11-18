@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Image Board</title>
     <link rel="stylesheet" href="./style.css">
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
 </head>
 
 <body>
@@ -14,17 +15,19 @@
         <!-- {{}} is used by Vue to assign placeholders -->
         <!-- {{'Hello World'}} -->
         <h1> {{ headline }} </h1>
-        first name : {{first}}
+
         <!-- connection via v-model -->
         <input type="text" v-model="first" name="first">
         <!-- events in vue: attach an element with v- -->
         <button v-on:click="updateFirst" first>🍎</button>
 
         <section class="basic-grid">
-            <div class="card">1
-                <div id="picture"> {{picture}} </div>
+            <div class="card" v-for="image of images">1
+                <div id="imgContainer">
+                    <img :src="image.url" />
+                </div>
                 <span class="imgtext">{{ description }}</span>
-            </div>>
+            </div>
         </section>
         <script src="/js/app.js" type="module" crossorigin="use-credentials"></script>
     </div>
