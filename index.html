@@ -12,21 +12,24 @@
 
 <body>
     <div id="main">
-        <!-- {{}} is used by Vue to assign placeholders -->
-        <!-- {{'Hello World'}} -->
-        <h1> {{ headline }} </h1>
-
-        <!-- connection via v-model -->
-        <input type="text" v-model="first" name="first">
-        <!-- events in vue: attach an element with v- -->
-        <button v-on:click="updateFirst" first>🍎</button>
-
+        <!-- multer only processes multipart! -->
+        <form action="/image" method="post" enctype="multipart/form-data" @submit.prevent="onFormSubmit">
+            <div class="form-row">
+                <input type="text" v-model="title" placeholder="title" />
+                <input type="text" v-model="description" placeholder="description" />
+                <input type="text" v-model="username" placeholder="username" />
+                <label for="image">please select your file</label>
+                <input type="file" name="image" id="image" accept="image/*">
+            </div>
+            <input type="submit" v-on:click="uploadImage" value="upload" class="btn-submit" />
+        </form>
         <section class="basic-grid">
-            <div class="card" v-for="image of images">1
-                <div id="imgContainer">
-                    <img :src="image.url" />
-                </div>
-                <span class="imgtext">{{ description }}</span>
+            <!-- image of images = alias in expression -->
+            <div class="card" v-for="image in images">
+                <span class="imgtitle">{{image.title}}</span>
+                <!-- //hier rows -->
+                <img :src="image.url" id="imgInCard" />
+                <span class="imgDescription">{{image.description}}</span>
             </div>
         </section>
         <script src="/js/app.js" type="module" crossorigin="use-credentials"></script>

@@ -8,11 +8,9 @@ Vue.createApp({
     //You can specify data you want to render in your UI by adding a data function
     // all the properties of this object will be available for use in your HTML.
     data() {
-        //has to return an obj
+        //will be reactive properties, the UI will automatically update to reflect the change
         return {
-            description: "hello world",
             images: [],
-            card: "card",
         };
     },
     //convention: define function in methodsproperty(also obj)
@@ -29,12 +27,9 @@ Vue.createApp({
                 return res.json();
             })
             .then((images) => {
-                console.log(images);
+                // console.log("this images", this.images);
 
                 this.images = images;
             });
     },
 }).mount("#main");
-
-//create endpoint to database
-//create layout
