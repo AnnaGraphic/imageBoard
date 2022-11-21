@@ -11,4 +11,15 @@ module.exports.getImage = () => {
 };
 // //exportieren
 
-//addimage
+module.exports.addImage = ({ url, title, description, username }) => {
+    return db
+        .query(
+            `INSERT INTO images (url, title, description, username)
+    VALUES ($1, $2, $3, $4)
+    RETURNING*`,
+            [url, title, description, username]
+        )
+        .then((result) => {
+            return result.rows[0];
+        });
+};

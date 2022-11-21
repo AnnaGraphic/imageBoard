@@ -44,7 +44,13 @@ app.post("/images", uploader.single("file"), (req, res) => {
     promise
         .then(() => {
             console.log("success");
-            // it worked!!!
+            db.addImage({
+                url: `https://s3.amazonaws.com/spicedling/${req.file.filename}`,
+                title: req.body.title,
+                description: req.body.description,
+                username: req.body.username,
+            });
+            //make a save querie, then send to vue
             res.json({});
         })
         .catch((err) => {
