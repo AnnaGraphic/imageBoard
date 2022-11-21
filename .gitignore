@@ -3,3 +3,5 @@ node_modules
 secrets.json
 .env
 notes.js
+app2.js
+index2.html

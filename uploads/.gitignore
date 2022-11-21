@@ -1,2 +1,3 @@
 *
 !.gitignore
+# want to push the folder ( !.gitignore) but not the content (*)

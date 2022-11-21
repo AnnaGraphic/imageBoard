@@ -13,13 +13,13 @@
 <body>
     <div id="main">
         <!-- multer only processes multipart! -->
-        <form action="/image" method="post" enctype="multipart/form-data" @submit.prevent="onFormSubmit">
+        <form action="/images" method="POST" enctype="multipart/form-data" @submit.prevent="onFormSubmit">
             <div class="form-row">
                 <input type="text" v-model="title" placeholder="title" />
                 <input type="text" v-model="description" placeholder="description" />
                 <input type="text" v-model="username" placeholder="username" />
                 <label for="image">please select your file</label>
-                <input type="file" name="image" id="image" accept="image/*">
+                <input type="file" name="file" id="file" accept="image/*">
             </div>
             <input type="submit" v-on:click="uploadImage" value="upload" class="btn-submit" />
         </form>

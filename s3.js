@@ -8,7 +8,7 @@ if (process.env.NODE_ENV == "production") {
     secrets = require("./secrets");
 }
 
-const s3 = new aws.S3({
+module.exports.s3 = new aws.S3({
     accessKeyId: secrets.AWS_KEY,
     secretAccessKey: secrets.AWS_SECRET,
 });
