@@ -24,7 +24,9 @@ app.get("/images", (req, res) => {
 });
 
 app.post("/images", uploader.single("file"), (req, res) => {
+    //req.file comes via multer. multer saves the pics in /uploads
     console.log("req.file", req.file);
+    console.log("req.body", req.body);
     //body comes from the app.js
 
     const { filename, mimetype, size, path } = req.file;

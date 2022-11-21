@@ -8,20 +8,20 @@ Vue.createApp({
 
     //convention: define function in methodsproperty(also obj)
     methods: {
-        updateFirst: function (e) {
-            //this reffered to obj
-            this.first = "hello";
-        },
         uploadImage: function (e) {
+            e.preventDefault();
             const file = document.querySelector("input[type=file]").files[0];
             const formData = new FormData();
 
             formData.append("file", file);
-
+            formData.append("title", this.title);
+            formData.append("description", this.description);
+            formData.append("username", this.username);
+            console.log("this.title", this.title);
             fetch("/images", {
                 method: "POST",
                 body: formData,
-            });
+            }); //.then uplod
         },
     },
     //"root-component"
@@ -44,7 +44,7 @@ Vue.createApp({
                 return res.json();
             })
             .then((images) => {
-                console.log("this images", this.images, images.title);
+                // console.log("this images", this.images, images.title);
                 this.images = images;
                 this.title = images.title;
                 this.description = images.description;

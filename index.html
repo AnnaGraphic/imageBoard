@@ -13,7 +13,7 @@
 <body>
     <div id="main">
         <!-- multer only processes multipart! -->
-        <form action="/images" method="POST" enctype="multipart/form-data" @submit.prevent="onFormSubmit">
+        <form enctype="multipart/form-data">
             <div class="form-row">
                 <input type="text" v-model="title" placeholder="title" />
                 <input type="text" v-model="description" placeholder="description" />
