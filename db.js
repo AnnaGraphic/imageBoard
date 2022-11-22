@@ -16,7 +16,7 @@ module.exports.addImage = ({ url, title, description, username }) => {
         .query(
             `INSERT INTO images (url, title, description, username)
     VALUES ($1, $2, $3, $4)
-    RETURNING*`,
+    RETURNING *`,
             [url, title, description, username]
         )
         .then((result) => {

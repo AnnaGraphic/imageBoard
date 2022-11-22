@@ -31,27 +31,24 @@ app.post("/images", uploader.single("file"), (req, res) => {
 
     const { filename, mimetype, size, path } = req.file;
 
-    const promise = s3
-        .putObject({
-            Bucket: "spicedling",
-            ACL: "public-read",
-            Key: filename,
-            Body: fs.createReadStream(path),
-            ContentType: mimetype,
-            ContentLength: size,
-        })
-        .promise();
-    promise
+    s3.putObject({
+        Bucket: "spicedling",
+        ACL: "public-read",
+        Key: filename,
+        Body: fs.createReadStream(path),
+        ContentType: mimetype,
+        ContentLength: size,
+    })
+        .promise()
         .then(() => {
-            console.log("success");
             db.addImage({
                 url: `https://s3.amazonaws.com/spicedling/${req.file.filename}`,
                 title: req.body.title,
                 description: req.body.description,
                 username: req.body.username,
+            }).then((image) => {
+                res.json(image);
             });
-            //make a save querie, then send to vue
-            res.json({});
         })
         .catch((err) => {
             // uh oh
@@ -66,18 +63,18 @@ app.post("/images", uploader.single("file"), (req, res) => {
 // The string passed to single is the name of the field in the request.
 //Create endpoint in server.js for delivering the images from the DB
 // tHE ROUTE THAT GETS TRIGGERED BY THE FORM
-app.post("/upload", uploader.single("file"), function (req, res) {
-    if (req.file) {
-        // EVERYTHING WE NEED ABOUT THE FILE
-        res.json({
-            success: true,
-        });
-    } else {
-        res.json({
-            success: false,
-        });
-    }
-});
+// app.post("/upload", uploader.single("file"), function (req, res) {
+//     if (req.file) {
+//         // EVERYTHING WE NEED ABOUT THE FILE
+//         res.json({
+//             success: true,
+//         });
+//     } else {
+//         res.json({
+//             success: false,
+//         });
+//     }
+// });
 
 // * no real routing = typically for onepage apps
 app.get("*", (req, res) => {

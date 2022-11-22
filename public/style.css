@@ -48,8 +48,11 @@ form {
         rgba(2, 8, 20, 0.08) 0px 0.175rem 0.5em;
     transform: translateY(-3px) scale(1.1);
 }
+.modal {
+    color: palevioletred;
+}
 #imgContainer {
-    background-color: crimson;
+    background-color: palevioletred;
 }
 #imgInCard {
     height: 300px;
