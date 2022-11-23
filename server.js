@@ -67,7 +67,7 @@ app.post("/comments", (req, res) => {
         username,
         imageId,
     }).then((lastComment) => {
-        res.json(lastComment);
+        return res.json(lastComment);
     });
 });
 
