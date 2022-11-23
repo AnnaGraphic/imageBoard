@@ -3,6 +3,7 @@
 //adding properties and methods to the object you pass to createApp.
 import * as Vue from "./vue.js";
 import Modal from "./components/modal.js";
+
 //               where we want to hook HTML
 Vue.createApp({
     //"root-component"

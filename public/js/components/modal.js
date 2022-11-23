@@ -1,3 +1,4 @@
+import Comments from "./comment.js";
 const Modal = {
     data() {
         //save the variables here
@@ -17,6 +18,10 @@ const Modal = {
             this.$emit("close");
         },
     },
+    components: {
+        //key is the name in the html and the value ist what i want to import
+        Comments: Comments,
+    },
     props: ["image"],
     mounted() {
         console.log("image in mounted", this.image);
@@ -26,11 +31,12 @@ const Modal = {
     @click="close"> X 
 </button>
     <div class="modalImgContainer">
-    <h1> {{ image.title}} </h1>
-    <img style="width:90%;" :src="image.url"  />
+    <h1> {{ image.title}} </h1>  <p>uploaded by {{ image.username }}</p>
+    <img :src="image.url" class="modalImg" />
     <p>{{ image.description }}</p> 
-        <p>uploaded by {{ image.username }}</p>         
+                
     </div>
+  <Comments v-bind:id="imageId">comments</Comments>
     </div>`,
 };
 export default Modal;
