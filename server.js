@@ -7,6 +7,7 @@ const { PORT = 8000 } = process.env;
 const { uploader } = require("./multer");
 const fs = require("fs");
 const { s3 } = require("./s3");
+const { AppIntegrations } = require("aws-sdk");
 console.log("s3", s3);
 
 app.use(express.static(path.join(__dirname, "public")));
@@ -54,6 +55,23 @@ app.post("/images", uploader.single("file"), (req, res) => {
             // uh oh
             console.log(err);
         });
+});
+
+//// comments
+//post route, 3 pieces of data from the body, insert it to db, return with json - similar to reg
+app.post("/comments", (req, res) => {
+    console.log("POST comments ", req.body);
+    const { comment, username, image_id } = req.body;
+    db.addComment({
+        comment: req.session.comment,
+        username: req.session.username,
+        image_id: req.session.image_id,
+    });
+});
+
+//imageId oder image_id
+app.get("/comments/:imageId", (req, res) => {
+    db.getComments(imageId);
 });
 
 //++++++++++ U P L O A D ++++++++++++++

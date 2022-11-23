@@ -24,7 +24,7 @@ const Modal = {
     },
     props: ["image"],
     mounted() {
-        console.log("image in mounted", this.image);
+        console.log("image.id in mounted", this.image.id);
     },
     template: `<div class="modal">
                 <button type="button" class="close" 
@@ -36,7 +36,7 @@ const Modal = {
     <p>{{ image.description }}</p> 
                 
     </div>
-  <Comments v-bind:id="imageId">comments</Comments>
+  <Comments v-bind:id="image.id">comments</Comments>
     </div>`,
 };
 export default Modal;
