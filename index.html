@@ -26,7 +26,7 @@
         <section class="basic-grid">
             <!-- image of images = alias in expression -->
             <div class="card" v-for="image in images" @click="openModal(image)">
-                <span class=" imgtitle">{{image.title}}</span>
+                <span class="imgtitle">{{image.title}}</span>
                 <!-- //hier rows -->
                 <img :src="image.url" id="imgInCard" />
                 <span class="imgDescription">{{image.description}}</span>

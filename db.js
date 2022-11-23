@@ -39,7 +39,7 @@ module.exports.getComments = (image_id) => {
 };
 
 //adding into comments for current image
-module.exports.addComment = (comment, username, image_id) => {
+module.exports.addComment = ({ comment, username, image_id }) => {
     return db
         .query(
             `INSERT INTO comments (comment, username, image_id)

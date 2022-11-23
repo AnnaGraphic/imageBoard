@@ -63,9 +63,11 @@ app.post("/comments", (req, res) => {
     console.log("POST comments ", req.body);
     const { comment, username, image_id } = req.body;
     db.addComment({
-        comment: req.session.comment,
-        username: req.session.username,
-        image_id: req.session.image_id,
+        comment,
+        username,
+        image_id,
+    }).then((lastComment) => {
+        res.json(lastComment);
     });
 });
 

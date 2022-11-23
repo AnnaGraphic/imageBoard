@@ -36,7 +36,7 @@ const Modal = {
     <p>{{ image.description }}</p> 
                 
     </div>
-  <Comments v-bind:id="image.id">comments</Comments>
+  <Comments :id="image.id">comments</Comments>
     </div>`,
 };
 export default Modal;
