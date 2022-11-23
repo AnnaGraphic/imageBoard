@@ -31,7 +31,7 @@ const Modal = {
     @click="close"> X 
 </button>
     <div class="modalImgContainer">
-    <h1> {{ image.title}} </h1>  <p>uploaded by {{ image.username }}</p>
+    <h1> {{ image.title }} </h1>  <p>uploaded by {{ image.username }}</p>
     <img :src="image.url" class="modalImg" />
     <p>{{ image.description }}</p> 
                 

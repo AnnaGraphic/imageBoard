@@ -15,8 +15,7 @@ const Comments = {
                 comment: this.comment,
                 imageId: this.id,
             };
-
-            console.log(comment);
+            console.log("comment", comment);
             fetch("/comments", {
                 method: "POST",
                 body: JSON.stringify(comment),
@@ -28,45 +27,38 @@ const Comments = {
                 })
                 .then((lastComment) => {
                     this.comments.push(lastComment);
-                    console.log("lastComment", lastComment);
+                    console.log("Comments", this.comments);
                 });
-
-            // 1 hole daten aus form
-            // 2. in json formatieren
-            // 3. an post comments schicken
-            // 4. res aktueller kommentar
-            // 5. ins comments[] array pushen
-
-            // this.$emit("sendComment").then((response) => {
-            //     return;
-            // });
         },
     },
     props: ["id"],
-    //mounted wird immer aufgerufen, wenn die komponente das erste mal aufgerufen wird
     mounted() {
-        //
-        // fetch("/comments")
-        //     .then((res) => {
-        //         console.log("res.lson", res.json);
-        //         return res.json();
-        //     })
-        //     .then((bodyProperty) => {
-        //         this.bodyProperty = bodyProperty;
-        //         console.log("bodyProperty", this.bodyProperty);
-        //     });
+        fetch(`/comments/${this.id}`)
+            .then((response) => {
+                console.log("response von comments.js", response);
+                return response.json();
+            })
+            .then((comments) => {
+                this.comments = comments;
+                console.log("comments in comment.js", this.comments);
+            });
     },
     template: `<div>
-     <form id="commentForm"  
-                method=""
-                enctype="multipart/form-data">
-
+            <form id="commentForm"  
+                method="" enctype="multipart/form-data">
+                <div class="comments" v-for="comment in comments">
+                    <p>
+                       from: {{ comment.username }}
+                    </p>
+                    <p>{{ comment.comment }}</p>
+                </div>
                 <div class="form-row">
                     <input size="25"  type="text" v-model="username" name="username" placeholder="username"/> 
                     <br>
                     <textarea rows="4" type="text" v-model="comment"  name="comment"  placeholder="Add Comment"></textarea>  
                 </div>
                 <input type="submit" v-on:click="sendComment" value="submit" class="button />
+
             </form>
     </div>`,
 };

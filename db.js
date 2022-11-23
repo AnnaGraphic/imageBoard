@@ -1,6 +1,6 @@
 const spicedPg = require("spiced-pg");
 require("dotenv").config();
-console.log(`user ${process.env.XUSER}`);
+//console.log(`user ${process.env.XUSER}`);
 const db = spicedPg(
     `postgres:${process.env.XUSER}:${process.env.PASS}@localhost:5432/${process.env.DATABASE}`
 );
@@ -34,21 +34,22 @@ module.exports.getComments = (image_id) => {
         )
         .then((result) => {
             console.log("result getComments", result.rows);
+
             return result.rows;
         });
 };
 
 //adding into comments for current image
-module.exports.addComment = ({ comment, username, image_id }) => {
+module.exports.addComment = ({ comment, username, imageId }) => {
     return db
         .query(
             `INSERT INTO comments (comment, username, image_id)
         VALUES ($1, $2, $3)
         RETURNING *`,
-            [comment, username, image_id]
+            [comment, username, imageId]
         )
         .then((result) => {
-            console.log("result addComment", result.rows[0]);
+            // console.log("result addComment", result.rows[0]);
             return result.rows[0];
         });
 };
