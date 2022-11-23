@@ -17,7 +17,8 @@ Vue.createApp({
             title: "",
             description: "",
             username: "",
-            selectedId: 0,
+            //selectedID: 0,
+            selectedImage: undefined,
         };
     },
     //convention: define function in methodsproperty(also obj)
@@ -44,10 +45,17 @@ Vue.createApp({
                     this.images.push(image);
                 });
         },
-        openModal: function (imageID) {
-            console.log("imageid", imageID);
-            this.isModal = !this.isModal;
-            this.selectedId = imageID;
+        openModal: function (image) {
+            console.log("image", image);
+            this.isModal = true;
+            // this.isModal = !this.isModal;
+            this.selectedImage = image;
+            // this.selectedId = image.description;
+            // this.selectedId = image.url;
+            // this.selectedId = image.id;
+        },
+        closeModal: function () {
+            this.isModal = false;
         },
     },
     components: {
